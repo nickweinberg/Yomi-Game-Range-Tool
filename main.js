@@ -83,6 +83,11 @@ var SimpleRandom = React.createClass({
       weights: oldWeights});
 
   },
+  getSliderMax: function(sliderName) {
+    var currentAvailableWeight = this.state.availableWeight * 100;
+    var currentSliderWeight = this.state.weights[sliderName] * 100;
+    return currentAvailableWeight + currentSliderWeight;
+  },
 
   render: function() {
     // click a button then displays a random number
@@ -97,19 +102,23 @@ var SimpleRandom = React.createClass({
         <WeightSlider
           sliderName="attack"
           value={this.state.weights.attack}
-          changeHandler={this.weightChange} />
+          changeHandler={this.weightChange}
+          sliderMax={this.getSliderMax('attack')} />
         <WeightSlider
           sliderName="throw"
           value={this.state.weights.throw}
-          changeHandler={this.weightChange} />
+          changeHandler={this.weightChange}
+          sliderMax={this.getSliderMax('throw')} />
         <WeightSlider
           sliderName="block"
           value={this.state.weights.block}
-          changeHandler={this.weightChange}  />
+          changeHandler={this.weightChange}
+          sliderMax={this.getSliderMax('block')} />
         <WeightSlider
           sliderName="dodge"
           value={this.state.weights.dodge}
-          changeHandler={this.weightChange}  />
+          changeHandler={this.weightChange}
+          sliderMax={this.getSliderMax('dodge')} />
         </div>
       </div>);
 
@@ -140,7 +149,7 @@ var WeightSlider = React.createClass({
         value={this.state.value}
         ref={this.props.sliderName}
         name={this.props.sliderName}
-        min="0" max="100" />
+        min="0" max={this.props.sliderMax} />
       </span>
     );
   }

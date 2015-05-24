@@ -1,5 +1,5 @@
 
-### Yomi RNG
+### Yomi Game Range Tool
 ##### (With adjustable sliders) *WOAH*
 
 
